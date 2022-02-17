@@ -1,5 +1,6 @@
 package de.intranda.goobi.plugins;
 
+import org.goobi.production.enums.PluginGuiType;
 import org.goobi.production.enums.PluginType;
 import org.goobi.production.plugin.interfaces.IDashboardPlugin;
 
@@ -17,12 +18,15 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
     @Getter
     private PluginType type = PluginType.Dashboard;
-    
+
     @Getter
     private String guiPath = "/uii/plugin_dashboard_entity.xhtml";
-    
+
     @Getter
     private String value;
+
+    @Getter
+    private PluginGuiType pluginGuiType = PluginGuiType.FULL;
 
     /**
      * Constructor
@@ -30,6 +34,6 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     public EntityDashboardPlugin() {
         log.info("Entity dashboard plugin started");
         value = ConfigPlugins.getPluginConfig(title).getString("value", "default value");
-    }   
+    }
 
 }
