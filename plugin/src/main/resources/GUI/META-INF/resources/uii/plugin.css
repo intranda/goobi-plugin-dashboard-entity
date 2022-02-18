@@ -1,0 +1,42 @@
+.grid {
+    display: grid;
+    grid-template-columns: auto 33%;
+    grid-template-rows: auto auto;
+    grid-row-gap: 1px;
+    grid-column-gap: 9px;
+}
+
+.grid .head {
+    grid-column-start: span 2;
+}
+
+
+.left {
+    
+    display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: space-evenly;
+align-items: stretch;
+align-content: stretch;
+    
+}
+
+.big-icon {
+    font-size: 20px !important;
+}
+
+.header {
+    font-weight: bold;
+    background: #f6f6f6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #555;    
+}
+
+.relation-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 80px 50px;
+    grid-template-rows: auto;
+    margin-bottom: 10px;
+}
