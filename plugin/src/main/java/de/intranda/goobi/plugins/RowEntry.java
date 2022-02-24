@@ -10,6 +10,6 @@ public class RowEntry {
     private String displayName;
     private String lastModified;
     private String status;
-    private Integer processId;
+    private String processId;
 
 }
