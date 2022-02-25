@@ -23,6 +23,8 @@ import de.sub.goobi.persistence.managers.ProcessManager;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
+import ugh.dl.Prefs;
+import ugh.exceptions.PreferencesException;
 
 @PluginImplementation
 @Log4j2
@@ -129,7 +131,39 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
         }
 
         return plugin.getGui();
-
     }
+
+    public String createNewEntity(EntityType type) {
+        // TODO
+        Prefs prefs = new Prefs();
+        try {
+            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
+        } catch (PreferencesException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+
+        NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
+
+        form.setPlugin("intranda_workflow_entity_editor");
+        IWorkflowPlugin plugin = form.getWorkflowPlugin();
+
+        try {
+            Method setEntityType = plugin.getClass().getMethod("setEntityType", EntityType.class);
+            setEntityType.invoke(plugin, type);
+            Method setPrefs = plugin.getClass().getMethod("setPrefs", Prefs.class);
+            setPrefs.invoke(plugin, prefs);
+
+
+            Method createEntity = plugin.getClass().getMethod("createEntity");
+            createEntity.invoke(plugin);
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            log.error(e);
+        }
+
+        return plugin.getGui();
+    }
+
+
 
 }

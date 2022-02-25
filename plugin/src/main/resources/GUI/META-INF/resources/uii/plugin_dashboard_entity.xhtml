@@ -86,8 +86,9 @@
                                             class="btn nobackground pull-right"
                                             jsf:id="addentity"
                                             style="color:  #{type.color}; margin-right: 5px;"
-                                            jsf:action="#{NavigationForm.workflowPlugin.addentity(type)}"
-                                            jsf:onclick="$('#entitySearchBox').modal('show');">
+                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
+                                            >
+<!--                                             jsf:onclick="$('#entitySearchBox').modal('show');" -->
                                             <i class="fa fa-plus big-icon" />
                                             <f:ajax
                                                 execute="@this"
