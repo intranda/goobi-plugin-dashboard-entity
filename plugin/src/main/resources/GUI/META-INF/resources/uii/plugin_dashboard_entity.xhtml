@@ -24,7 +24,7 @@
                 id="brand">&#160; </a>
 
             <ui:include src="/uii/template/inc_menu_preferences.xhtml" />
-            <!--                 <ui:include src="/uii/template/inc_menu_main.xhtml" /> -->
+            <ui:include src="/uii/template/inc_menu_main.xhtml" />
         </h:form>
     </ui:define>
 
@@ -33,7 +33,7 @@
 </style>
 
 
-        <h:panelGroup>
+        <h:panelGroup id="entity">
 
             <div class="grid">
                 <div class="head">
@@ -63,39 +63,34 @@
                                                 class="fa #{type.icon} big-icon"
                                                 style="color: #{type.color};" />
                                             <h:outputText
-                                                value="#{type.plural}"
+                                                value="#{type.name}"
                                                 style="color: #{type.color};" />
                                         </h3>
-
-                                        <!--                                         <button -->
-                                        <!--                                             class="btn nobackground pull-right" -->
-                                        <!--                                             jsf:id="showContent" -->
-                                        <!--                                             style="color:  #{type.color}; margin-right: 5px;"> -->
-
-                                        <!--                                             <f:setPropertyActionListener -->
-                                        <!--                                                 value="#{not type.showLinkedContent}" -->
-                                        <!--                                                 target="#{type.showLinkedContent}" /> -->
-                                        <!--                                             <i class="fa #{type.showLinkedContent ? 'fa-angle-down' : 'fa-angle-up'} big-icon" /> -->
-                                        <!--                                             <f:ajax -->
-                                        <!--                                                 execute="@this" -->
-                                        <!--                                                 render="@form" /> -->
-                                        <!--                                         </button> -->
 
 
                                         <button
                                             class="btn nobackground pull-right"
-                                            jsf:id="addentity"
+                                            jsf:id="addEntity"
                                             style="color:  #{type.color}; margin-right: 5px;"
-                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
-                                            >
-<!--                                             jsf:onclick="$('#entitySearchBox').modal('show');" -->
+                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}">
                                             <i class="fa fa-plus big-icon" />
-                                            <f:ajax
-                                                execute="@this"
-                                                render=":entityModalContent" />
                                         </button>
 
+                                        <button
+                                            class="btn nobackground pull-right"
+                                            jsf:id="searchEntities"
+                                            style="color:  #{type.color}; margin-right: 5px;"
+                                            jsf:onclick="$('#entitySearchBox').modal('show');">
+                                            <i class="fa fa-search big-icon" />
+                                            <f:ajax
+                                                execute="searchField"
+                                                render=":entity" />
+                                        </button>
 
+                                        <h:inputText
+                                            value="#{type.searchValue}"
+                                            id="searchField"
+                                            styleClass="searchField pull-right" />
                                     </div>
                                     <h:panelGroup
                                         layout="block"
@@ -106,11 +101,10 @@
                                         <h:panelGroup
                                             styleClass="relation-row header"
                                             rendered="#{type.showLinkedContent}">
-                                            <div style="margin-left: 10px;">Name</div>
-                                            <div>Time</div>
-                                            <div>Status</div>
-                                            <div>Action</div>
-
+                                            <div style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
+                                            <div>#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
+                                            <div>#{msgs.plugin_workflow_entity_sourceStatus}</div>
+                                            <div>#{msgs.plugin_workflow_entity_sourceAction}</div>
                                         </h:panelGroup>
                                         <h:panelGroup
                                             layout="block"
@@ -119,7 +113,7 @@
 
                                             <ui:repeat
                                                 var="entity"
-                                                value="#{DashboardForm.plugin.getEntityData(type, '')}">
+                                                value="#{DashboardForm.plugin.getEntityData(type)}">
                                                 <h:panelGroup
                                                     styleClass="relation-row"
                                                     id="entity">
@@ -166,8 +160,7 @@
 
                 </div>
                 <div
-                    class="right"
-                    style="border: 1px solid black">right area</div>
+                    class="right" style="text-align: center;">still without content</div>
 
             </div>
 

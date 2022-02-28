@@ -10,16 +10,13 @@
     grid-column-start: span 2;
 }
 
-
 .left {
-    
     display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-justify-content: space-evenly;
-align-items: stretch;
-align-content: stretch;
-    
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: stretch;
 }
 
 .big-icon {
@@ -31,7 +28,7 @@ align-content: stretch;
     background: #f6f6f6;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: #555;    
+    color: #555;
 }
 
 .relation-row {
@@ -44,7 +41,30 @@ align-content: stretch;
 .sources {
     padding-left: 0px;
     padding-right: 0px;
-    max-height: 300px;
+    max-height: 500px;
     overflow-y: auto;
     margin-top: -10px;
 }
+
+.nobackground {
+    background: #fff;
+    padding: 0px 2px;
+}
+
+.big-icon {
+    font-size: 20px !important;
+}
+
+.searchField {
+    border: 1px solid #ccc;
+    height: 25px;
+    font-size: 13px;
+    padding: 2px 12px;
+    background: #fff;
+    color: #333;
+    line-height: 1.42857143;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+

@@ -70,7 +70,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
         return configuration.getAllTypes();
     }
 
-    public List<RowEntry> getEntityData(EntityType type, String searchValue) {
+    public List<RowEntry> getEntityData(EntityType type) {
         List<RowEntry> answer = new ArrayList<>();
 
         StringBuilder sql = new StringBuilder();
@@ -86,9 +86,9 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
         sql.append(type.getName());
         sql.append("\" ");
         sql.append("and m2.name = \"index.EntitySearch\" ");
-        if (StringUtils.isNotBlank(searchValue)) {
+        if (StringUtils.isNotBlank(type.getSearchValue())) {
             sql.append("and m2.value like \"%");
-            sql.append(searchValue);
+            sql.append(type.getSearchValue());
             sql.append("%\" ");
         }
         sql.append("order by date desc limit 50 ");
