@@ -67,4 +67,18 @@
     margin-right: 10px;
 }
 
-
+@media only screen and (max-width: 1440px) {
+    .grid {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-row-gap: 1px;
+        grid-column-gap: 9px;
+    }
+    .grid .head {
+        grid-column-start: span 1;
+    }
+    .right {
+        display: none;
+    }
+}
