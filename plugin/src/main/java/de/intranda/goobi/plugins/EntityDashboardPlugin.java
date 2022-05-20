@@ -19,7 +19,9 @@ import de.intranda.goobi.plugins.model.EntityType;
 import de.sub.goobi.config.ConfigPlugins;
 import de.sub.goobi.forms.NavigationForm;
 import de.sub.goobi.helper.Helper;
+import de.sub.goobi.helper.exceptions.DAOException;
 import de.sub.goobi.persistence.managers.ProcessManager;
+import de.sub.goobi.persistence.managers.RulesetManager;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
@@ -134,21 +136,22 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     }
 
     public String createNewEntity(EntityType type) {
-        // TODO
-        Prefs prefs = new Prefs();
-        try {
-            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
-        } catch (PreferencesException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
+        
+//        Prefs prefs = new Prefs();
+//        try {
+//            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
+//        } catch (PreferencesException e1) {
+//            // TODO Auto-generated catch block
+//            e1.printStackTrace();
+//        }
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
-
         form.setPlugin("intranda_workflow_entity_editor");
         IWorkflowPlugin plugin = form.getWorkflowPlugin();
 
         try {
+        	// TODO this should come from the configuration file
+        	Prefs prefs = RulesetManager.getRulesetByName("Standard").getPreferences();
             Method setEntityType = plugin.getClass().getMethod("setEntityType", EntityType.class);
             setEntityType.invoke(plugin, type);
             Method setPrefs = plugin.getClass().getMethod("setPrefs", Prefs.class);
@@ -157,7 +160,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
             Method createEntity = plugin.getClass().getMethod("createEntity");
             createEntity.invoke(plugin);
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | DAOException e) {
             log.error(e);
         }
 
