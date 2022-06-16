@@ -90,9 +90,15 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
         sql.append("and m2.name = \"index.EntitySearch\" ");
         if (StringUtils.isNotBlank(type.getSearchValue())) {
             sql.append("and m2.value like \"%");
-            sql.append(type.getSearchValue());
+            String searchTerm = type.getSearchValue();
+            searchTerm = searchTerm.replace(" ", "%");
+            searchTerm = searchTerm.replace("`", "_");
+            searchTerm = searchTerm.replace("’", "_");
+            searchTerm = searchTerm.replace("\'", "_");
+            sql.append(searchTerm);
             sql.append("%\" ");
         }
+        
         sql.append("order by date desc limit 50 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
