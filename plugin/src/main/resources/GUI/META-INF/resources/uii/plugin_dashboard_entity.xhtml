@@ -30,8 +30,7 @@
 
     <ui:define name="content">
         <style>
-
-</style>
+		</style>
 
 
         <h:panelGroup id="entity">
@@ -46,129 +45,117 @@
 
                 <div class="left">
 
-                    <h:form>
                         <ui:repeat
                             var="type"
                             value="#{DashboardForm.plugin.allEntityTypes}">
-
-
+                            
                             <div class="col-sm-6">
-                                <div
-                                    class="box  box-bordered"
-                                    style="color: #{type.color}">
-                                    <div
-                                        class="box-title"
-                                        jsf:style="border-color: #{type.color};  ">
-                                        <h3>
-                                            <i
-                                                class="fa #{type.icon} big-icon"
-                                                style="color: #{type.color};" />
-                                            <h:outputText
-                                                value="#{type.name}"
-                                                style="color: #{type.color};" />
-                                        </h3>
 
+                    			<h:form>
 
-                                        <button
-                                            class="btn nobackground pull-right"
-                                            jsf:id="addEntity"
-                                            style="color:  #{type.color}; margin-right: 5px;"
-                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}">
-                                            <i class="fa fa-plus big-icon" />
-                                        </button>
-
-                                        <button
-                                            class="btn nobackground pull-right"
-                                            jsf:id="searchEntities"
-                                            style="color:  #{type.color}; margin-right: 5px;"
-                                            jsf:onclick="$('#entitySearchBox').modal('show');">
-                                            <i class="fa fa-search big-icon" />
-                                            <f:ajax
-                                                execute="searchField"
-                                                render=":entity" />
-                                        </button>
-
-                                        <h:inputText
-                                            value="#{type.searchValue}"
-                                            id="searchField"
-                                            styleClass="searchField pull-right" />
-                                    </div>
-                                    <h:panelGroup
-                                        layout="block"
-                                        styleClass="box-content nopadding #{type.name}"
-                                        style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
-                                        id="sources">
-
-                                        <h:panelGroup
-                                            styleClass="relation-row header"
-                                            rendered="#{type.showLinkedContent}">
-                                            <div style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
-                                            <div>#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
-                                            <div>#{msgs.plugin_workflow_entity_sourceStatus}</div>
-                                            <div>#{msgs.plugin_workflow_entity_sourceAction}</div>
-                                        </h:panelGroup>
-                                        <h:panelGroup
-                                            layout="block"
-                                            styleClass="sources"
-                                            rendered="#{type.showLinkedContent}">
-
-                                            <ui:repeat
-                                                var="entity"
-                                                value="#{DashboardForm.plugin.getEntityData(type)}">
-                                                <h:panelGroup
-                                                    styleClass="relation-row"
-                                                    id="entity">
-                                                    <div style="margin-left: 10px;">
-                                                        <h:outputText
-                                                            value="#{entity.displayName}"
-                                                            style="color: #333" />
-                                                    </div>
-                                                    <div>
-                                                        <h:outputText
-                                                            value="#{entity.lastModified}"
-                                                            style="color: #333" />
-                                                    </div>
-                                                    <div>
-                                                        <h:outputText
-                                                            value="#{entity.status}"
-                                                            styleClass="badge-bordered"
-                                                            style="color: #333" />
-                                                    </div>
-                                                    <div>
-                                                        <button
-                                                            class="btn btn-mini"
-                                                            jsf:id="editentity"
-                                                            style="background-color: #{type.color}; color: #fff; margin-left: 5px;"
-                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}">
-                                                            <i class="fa fa-pencil" />
-                                                        </button>
-                                                    </div>
-                                                </h:panelGroup>
-                                            </ui:repeat>
-                                        </h:panelGroup>
-                                    </h:panelGroup>
-                                </div>
-                            </div>
-
-
-
-
-
-
+	                                <div
+	                                    class="box  box-bordered"
+	                                    style="color: #{type.color}">
+	                                    <div
+	                                        class="box-title"
+	                                        jsf:style="border-color: #{type.color};  ">
+	                                        <h3>
+	                                            <i
+	                                                class="fa #{type.icon} big-icon"
+	                                                style="color: #{type.color};" />
+	                                            <h:outputText
+	                                                value="#{type.name}"
+	                                                style="color: #{type.color};" />
+	                                        </h3>
+	
+	                                        <h:inputText
+	                                            value="#{type.searchValue}"
+	                                            id="searchField"
+	                                            styleClass="searchField" />
+	                                            
+	                                        <button
+	                                            class="btn nobackground"
+	                                            jsf:id="searchEntities"
+	                                            style="color:  #{type.color}; margin-right: 5px;"
+	                                            jsf:onclick="$('#entitySearchBox').modal('show');">
+	                                            <i class="fa fa-search big-icon" />
+	                                            <f:ajax
+	                                                execute="searchField"
+	                                                render=":entity" />
+	                                        </button>
+	                                        
+											<button
+	                                            class="btn nobackground"
+	                                            jsf:id="addEntity"
+	                                            style="color:  #{type.color}; margin-right: 5px;"
+	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}">
+	                                            <i class="fa fa-plus big-icon" />
+	                                        </button>
+	
+	                                    </div>
+	                                    <h:panelGroup
+	                                        layout="block"
+	                                        styleClass="box-content nopadding #{type.name}"
+	                                        style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
+	                                        id="sources">
+	
+	                                        <h:panelGroup
+	                                            styleClass="relation-row header"
+	                                            rendered="#{type.showLinkedContent}">
+	                                            <div style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
+	                                            <div>#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
+	                                            <div>#{msgs.plugin_workflow_entity_sourceStatus}</div>
+	                                            <div>#{msgs.plugin_workflow_entity_sourceAction}</div>
+	                                        </h:panelGroup>
+	                                        <h:panelGroup
+	                                            layout="block"
+	                                            styleClass="sources"
+	                                            rendered="#{type.showLinkedContent}">
+	
+	                                            <ui:repeat
+	                                                var="entity"
+	                                                value="#{DashboardForm.plugin.getEntityData(type)}">
+	                                                <h:panelGroup
+	                                                    styleClass="relation-row"
+	                                                    id="entity">
+	                                                    <div style="margin-left: 10px;">
+	                                                        <h:outputText
+	                                                            value="#{entity.displayName}"
+	                                                            style="color: #333" />
+	                                                    </div>
+	                                                    <div>
+	                                                        <h:outputText
+	                                                            value="#{entity.lastModified}"
+	                                                            style="color: #333" />
+	                                                    </div>
+	                                                    <div>
+	                                                        <h:outputText
+	                                                            value="#{entity.status}"
+	                                                            styleClass="badge-bordered"
+	                                                            style="color: #333" />
+	                                                    </div>
+	                                                    <div>
+	                                                        <button
+	                                                            class="btn btn-mini"
+	                                                            jsf:id="editentity"
+	                                                            style="background-color: #{type.color}; color: #fff; margin-left: 5px;"
+	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}">
+	                                                            <i class="fa fa-pencil" />
+	                                                        </button>
+	                                                    </div>
+	                                                </h:panelGroup>
+	                                            </ui:repeat>
+	                                        </h:panelGroup>
+	                                    </h:panelGroup>
+	                                </div>
+							</h:form>
+						</div>
                         </ui:repeat>
-
-                    </h:form>
-
                 </div>
                 <div
                     class="right"
                     style="text-align: center;">still without content</div>
-
-            </div>
-
-
-
+           	</div>
         </h:panelGroup>
-
     </ui:define>
 </ui:composition>
