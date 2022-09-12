@@ -1,3 +1,17 @@
+:root {
+  --bg-nav-bar: #1B2330;
+  --bg-hv-nav-bar: #324158;
+  --fg-hv-nav-bar: #fff;
+  
+  --bg-content: #f2f3f4;
+}
+
+
+
+
+
+
+
 .grid {
     display: grid;
     grid-template-columns: auto 33%;
@@ -56,6 +70,7 @@
 .box-title {
 	display: flex;
 	align-items: center;
+	background-color: #fff;
 }
 
 .searchField {
@@ -70,6 +85,68 @@
     margin-right: 10px;
     margin-left: auto;
 }
+
+/* content background color */
+body,
+#main,
+#main .container-fluid,
+.breadcrumb-container button,
+.breadcrumb-container .breadcrumb-label
+{
+  background-color: var(--bg-content) !important;
+}
+
+/* Override styles.css */
+.btn:hover {
+	background: transparent;
+}
+/* COMPONENTS */
+
+/* Nav-Bar */
+#navigation {
+  background-color: var(--bg-nav-bar);
+}
+
+#navigation a:focus,
+#navigation a:hover,
+#navigation a:active,
+#navigation .btn:focus,
+#navigation .btn:hover,
+#navigation .btn:active {
+   /* Override very specific styles in `intranda.css` + `styles.css` */ 
+   background-color: var(--bg-hv-nav-bar) !important;
+   color: var(--fg-hv-nav-bar);
+}
+
+/* Override styles.css */
+#navigation .dropdown-menu {
+  border-color: var(--bg-nav-bar);
+}
+
+/* Mobile nav */
+#navigation .mobile-nav.open {
+  background-color: var(--bg-hv-nav-bar);
+  border-color: var(--bg-hv-nav-bar);
+}
+
+#navigation .mobile-nav.open > li > ul,
+#navigation .mobile-nav.open > li > a {
+  background-color: var(--bg-nav-bar);
+  border-color: var(--bg-hv-nav-bar);
+}
+
+#navigation a#brand:focus,
+#navigation a#brand:hover,
+#navigation a#brand:active {
+  background-color: var(--bg-nav-bar) !important;
+}
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 1440px) {
     .grid {
