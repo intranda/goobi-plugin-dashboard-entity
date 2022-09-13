@@ -48,7 +48,7 @@
                         <ui:repeat
                             var="type"
                             value="#{DashboardForm.plugin.allEntityTypes}">
-                            
+
                             <div class="col-sm-6">
 
                     			<h:form>
@@ -67,38 +67,46 @@
 	                                                value="#{type.name}"
 	                                                style="color: #{type.color};" />
 	                                        </h3>
-	
+
 	                                        <h:inputText
 	                                            value="#{type.searchValue}"
 	                                            id="searchField"
 	                                            styleClass="searchField" />
-	                                            
+
 	                                        <button
 	                                            class="btn nobackground"
 	                                            jsf:id="searchEntities"
 	                                            style="color:  #{type.color}; margin-right: 5px;"
-	                                            jsf:onclick="$('#entitySearchBox').modal('show');">
+	                                            jsf:onclick="$('#entitySearchBox').modal('show');"
+																							title="#{msgs.intranda_dashboard_entity_search}"
+																							data-toggle="tooltip"
+																							data-placement="bottom"
+																							>
 	                                            <i class="fa fa-search big-icon" />
 	                                            <f:ajax
 	                                                execute="searchField"
 	                                                render=":entity" />
 	                                        </button>
-	                                        
-											<button
+
+																						<button
 	                                            class="btn nobackground"
 	                                            jsf:id="addEntity"
 	                                            style="color:  #{type.color}; margin-right: 5px;"
-	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}">
+	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
+																							title="#{msgs.intranda_dashboard_entity_addEntity}"
+																							data-toggle="tooltip"
+																							data-placement="bottom"
+																							>
 	                                            <i class="fa fa-plus big-icon" />
 	                                        </button>
-	
+
 	                                    </div>
 	                                    <h:panelGroup
 	                                        layout="block"
 	                                        styleClass="box-content nopadding #{type.name}"
 	                                        style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
 	                                        id="sources">
-	
+
 	                                        <h:panelGroup
 	                                            styleClass="relation-row header"
 	                                            rendered="#{type.showLinkedContent}">
@@ -111,7 +119,7 @@
 	                                            layout="block"
 	                                            styleClass="sources"
 	                                            rendered="#{type.showLinkedContent}">
-	
+
 	                                            <ui:repeat
 	                                                var="entity"
 	                                                value="#{DashboardForm.plugin.getEntityData(type)}">
@@ -139,7 +147,11 @@
 	                                                            class="btn btn-mini"
 	                                                            jsf:id="editentity"
 	                                                            style="background-color: #{type.color}; color: #fff; margin-left: 5px;"
-	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}">
+	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
+																															title="#{msgs.intranda_dashboard_entity_editEntity}"
+																															data-toggle="tooltip"
+																															data-placement="bottom"
+																															>
 	                                                            <i class="fa fa-pencil" />
 	                                                        </button>
 	                                                    </div>
