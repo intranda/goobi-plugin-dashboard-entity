@@ -29,13 +29,11 @@
     </ui:define>
 
     <ui:define name="content">
-        <style>
-		</style>
 
 
-        <h:panelGroup id="entity">
+        <h:panelGroup id="entity" styleClass="dashboard-entity">
 
-            <div class="grid">
+            <div>
                 <div class="head">
                     <h1>
                         <h:outputText value="#{msgs[DashboardForm.plugin.title]}" />
@@ -43,13 +41,13 @@
 
                 </div>
 
-                <div class="left">
+                <div class="row">
 
                         <ui:repeat
                             var="type"
                             value="#{DashboardForm.plugin.allEntityTypes}">
 
-                            <div class="col-sm-6">
+                            <div class="col-md-6 col-lg-4">
 
                     			<h:form>
 
@@ -80,7 +78,7 @@
 	                                            jsf:onclick="$('#entitySearchBox').modal('show');"
 																							title="#{msgs.intranda_dashboard_entity_search}"
 																							data-toggle="tooltip"
-																							data-placement="bottom"
+																							data-placement="top"
 																							>
 	                                            <i class="fa fa-search big-icon" />
 	                                            <f:ajax
@@ -95,7 +93,7 @@
 	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
 																							title="#{msgs.intranda_dashboard_entity_addEntity}"
 																							data-toggle="tooltip"
-																							data-placement="bottom"
+																							data-placement="top"
 																							>
 	                                            <i class="fa fa-plus big-icon" />
 	                                        </button>
@@ -150,7 +148,7 @@
 	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
 																															title="#{msgs.intranda_dashboard_entity_editEntity}"
 																															data-toggle="tooltip"
-																															data-placement="bottom"
+																															data-placement="top"
 																															>
 	                                                            <i class="fa fa-pencil" />
 	                                                        </button>
@@ -164,9 +162,6 @@
 						</div>
                         </ui:repeat>
                 </div>
-                <div
-                    class="right"
-                    style="text-align: center;">still without content</div>
            	</div>
         </h:panelGroup>
     </ui:define>
