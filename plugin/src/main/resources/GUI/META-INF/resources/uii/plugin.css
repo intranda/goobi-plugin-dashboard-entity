@@ -7,11 +7,6 @@
 }
 
 
-
-
-
-
-
 .grid {
     display: grid;
     grid-template-columns: auto 33%;
@@ -24,12 +19,6 @@
     grid-column-start: span 2;
 }
 
-.left {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    align-content: stretch;
-}
 
 .big-icon {
     font-size: 20px !important;
