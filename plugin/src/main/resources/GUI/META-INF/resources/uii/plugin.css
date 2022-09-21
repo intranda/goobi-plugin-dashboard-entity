@@ -4,6 +4,8 @@
   --fg-hv-nav-bar: #fff;
 
   --bg-content: #f2f3f4;
+
+  --gap: 8px;
 }
 
 
@@ -24,8 +26,9 @@
     font-size: 20px !important;
 }
 
-.box-content {
+.box .box-title {
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 
 .header {
@@ -34,13 +37,16 @@
     padding-top: 5px;
     padding-bottom: 5px;
     color: #555;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+
 }
 
 .relation-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 80px 50px;
+    grid-template-columns: 1fr 1fr 80px 40px;
     grid-template-rows: auto;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .sources {
@@ -48,6 +54,15 @@
     padding-right: 0px;
     max-height: 500px;
     margin-top: -10px;
+
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.cell--action {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 }
 
 .nobackground {
@@ -59,10 +74,34 @@
     font-size: 20px !important;
 }
 
-.box-title {
+.box.box-bordered {
+  margin-bottom: var(--gap);
+}
+
+.box .box-title {
 	display: flex;
+  justify-content: space-between;
 	align-items: center;
 	background-color: #fff;
+  margin: 0;
+  padding: 7px 10px;
+}
+
+.box .box-title::after {
+    display: none;
+}
+
+.box .box-title h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 0;
+}
+
+.box .box-title h3 i {
+    margin: 0;
+    min-width: 24px;
+    max-width: 24px;
 }
 
 .searchField {
@@ -113,6 +152,10 @@ body,
 /* Override styles.css */
 #navigation .dropdown-menu {
   border-color: var(--bg-nav-bar);
+}
+
+#navigation .main-nav > li.active:hover > a {
+    color: #fff;
 }
 
 /* Mobile nav */
