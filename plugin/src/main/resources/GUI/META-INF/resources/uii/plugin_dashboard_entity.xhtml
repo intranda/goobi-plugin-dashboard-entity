@@ -103,15 +103,19 @@
 	                                        layout="block"
 	                                        styleClass="box-content nopadding #{type.name}"
 	                                        style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
-	                                        id="sources">
+	                                        id="sources"
+																					>
+																					<f:passThroughAttribute name="role" value="table" />
+																					<f:passThroughAttribute name="aria-label" value="#{type.name}" />
 
 	                                        <h:panelGroup
 	                                            styleClass="relation-row header"
 	                                            rendered="#{type.showLinkedContent}">
-	                                            <div style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
-	                                            <div>#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
-	                                            <div>#{msgs.plugin_workflow_entity_sourceStatus}</div>
-	                                            <div>#{msgs.plugin_workflow_entity_sourceAction}</div>
+																							<f:passThroughAttribute name="role" value="row" />
+	                                            <div role="columnheader" style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
+	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
+	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceStatus}</div>
+	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceAction}</div>
 	                                        </h:panelGroup>
 	                                        <h:panelGroup
 	                                            layout="block"
@@ -124,23 +128,24 @@
 	                                                <h:panelGroup
 	                                                    styleClass="relation-row"
 	                                                    id="entity">
-	                                                    <div style="margin-left: 10px;">
+																											<f:passThroughAttribute name="role" value="row" />
+	                                                    <div role="cell" style="margin-left: 10px;">
 	                                                        <h:outputText
 	                                                            value="#{entity.displayName}"
 	                                                            style="color: #333" />
 	                                                    </div>
-	                                                    <div>
+	                                                    <div role="cell">
 	                                                        <h:outputText
 	                                                            value="#{entity.lastModified}"
 	                                                            style="color: #333" />
 	                                                    </div>
-	                                                    <div>
+	                                                    <div role="cell">
 	                                                        <h:outputText
 	                                                            value="#{entity.status}"
 	                                                            styleClass="badge-bordered"
 	                                                            style="color: #333" />
 	                                                    </div>
-	                                                    <div>
+	                                                    <div role="cell">
 	                                                        <button
 	                                                            class="btn btn-mini"
 	                                                            jsf:id="editentity"
