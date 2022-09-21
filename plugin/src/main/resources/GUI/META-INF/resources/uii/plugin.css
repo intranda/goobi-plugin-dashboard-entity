@@ -2,7 +2,7 @@
   --bg-nav-bar: #1B2330;
   --bg-hv-nav-bar: #324158;
   --fg-hv-nav-bar: #fff;
-  
+
   --bg-content: #f2f3f4;
 }
 
@@ -24,6 +24,10 @@
     font-size: 20px !important;
 }
 
+.box-content {
+    overflow-y: auto;
+}
+
 .header {
     font-weight: bold;
     background: #f6f6f6;
@@ -43,7 +47,6 @@
     padding-left: 0px;
     padding-right: 0px;
     max-height: 500px;
-    overflow-y: auto;
     margin-top: -10px;
 }
 
@@ -102,7 +105,7 @@ body,
 #navigation .btn:focus,
 #navigation .btn:hover,
 #navigation .btn:active {
-   /* Override very specific styles in `intranda.css` + `styles.css` */ 
+   /* Override very specific styles in `intranda.css` + `styles.css` */
    background-color: var(--bg-hv-nav-bar) !important;
    color: var(--fg-hv-nav-bar);
 }
