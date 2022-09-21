@@ -66,6 +66,8 @@
 	                                                style="color: #{type.color};" />
 	                                        </h3>
 
+																					<div class="box-title__actions">
+
 	                                        <h:inputText
 	                                            value="#{type.searchValue}"
 	                                            id="searchField"
@@ -89,7 +91,7 @@
 																						<button
 	                                            class="btn nobackground"
 	                                            jsf:id="addEntity"
-	                                            style="color:  #{type.color}; margin-right: 5px;"
+	                                            style="color:  #{type.color};"
 	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
 																							title="#{msgs.intranda_dashboard_entity_addEntity}"
 																							data-toggle="tooltip"
@@ -97,6 +99,7 @@
 																							>
 	                                            <i class="fa fa-plus big-icon" />
 	                                        </button>
+																					</div>
 
 	                                    </div>
 	                                    <h:panelGroup
@@ -145,11 +148,11 @@
 	                                                            styleClass="badge-bordered"
 	                                                            style="color: #333" />
 	                                                    </div>
-	                                                    <div role="cell">
+	                                                    <div role="cell" class="cell--action">
 	                                                        <button
 	                                                            class="btn btn-mini"
 	                                                            jsf:id="editentity"
-	                                                            style="background-color: #{type.color}; color: #fff; margin-left: 5px;"
+	                                                            style="background-color: #{type.color}; color: #fff;"
 	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
 																															title="#{msgs.intranda_dashboard_entity_editEntity}"
 																															data-toggle="tooltip"
