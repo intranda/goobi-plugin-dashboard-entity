@@ -1,3 +1,14 @@
+:root {
+  --bg-nav-bar: #1B2330;
+  --bg-hv-nav-bar: #324158;
+  --fg-hv-nav-bar: #fff;
+
+  --bg-content: #f2f3f4;
+
+  --gap: 8px;
+}
+
+
 .grid {
     display: grid;
     grid-template-columns: auto 33%;
@@ -10,15 +21,14 @@
     grid-column-start: span 2;
 }
 
-.left {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    align-content: stretch;
-}
 
 .big-icon {
     font-size: 20px !important;
+}
+
+.box .box-title {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 
 .header {
@@ -27,21 +37,32 @@
     padding-top: 5px;
     padding-bottom: 5px;
     color: #555;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+
 }
 
 .relation-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 80px 50px;
+    grid-template-columns: 1fr 1fr 80px 40px;
     grid-template-rows: auto;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .sources {
     padding-left: 0px;
     padding-right: 0px;
     max-height: 500px;
-    overflow-y: auto;
     margin-top: -10px;
+
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.cell--action {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 }
 
 .nobackground {
@@ -53,9 +74,34 @@
     font-size: 20px !important;
 }
 
-.box-title {
+.box.box-bordered {
+  margin-bottom: var(--gap);
+}
+
+.box .box-title {
 	display: flex;
+  justify-content: space-between;
 	align-items: center;
+	background-color: #fff;
+  margin: 0;
+  padding: 7px 10px;
+}
+
+.box .box-title::after {
+    display: none;
+}
+
+.box .box-title h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 0;
+}
+
+.box .box-title h3 i {
+    margin: 0;
+    min-width: 24px;
+    max-width: 24px;
 }
 
 .searchField {
@@ -70,6 +116,72 @@
     margin-right: 10px;
     margin-left: auto;
 }
+
+/* content background color */
+body,
+#main,
+#main .container-fluid,
+.breadcrumb-container button,
+.breadcrumb-container .breadcrumb-label
+{
+  background-color: var(--bg-content) !important;
+}
+
+/* Override styles.css */
+.btn:hover {
+	background: transparent;
+}
+/* COMPONENTS */
+
+/* Nav-Bar */
+#navigation {
+  background-color: var(--bg-nav-bar);
+}
+
+#navigation a:focus,
+#navigation a:hover,
+#navigation a:active,
+#navigation .btn:focus,
+#navigation .btn:hover,
+#navigation .btn:active {
+   /* Override very specific styles in `intranda.css` + `styles.css` */
+   background-color: var(--bg-hv-nav-bar) !important;
+   color: var(--fg-hv-nav-bar);
+}
+
+/* Override styles.css */
+#navigation .dropdown-menu {
+  border-color: var(--bg-nav-bar);
+}
+
+#navigation .main-nav > li.active:hover > a {
+    color: #fff;
+}
+
+/* Mobile nav */
+#navigation .mobile-nav.open {
+  background-color: var(--bg-hv-nav-bar);
+  border-color: var(--bg-hv-nav-bar);
+}
+
+#navigation .mobile-nav.open > li > ul,
+#navigation .mobile-nav.open > li > a {
+  background-color: var(--bg-nav-bar);
+  border-color: var(--bg-hv-nav-bar);
+}
+
+#navigation a#brand:focus,
+#navigation a#brand:hover,
+#navigation a#brand:active {
+  background-color: var(--bg-nav-bar) !important;
+}
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 1440px) {
     .grid {
