@@ -26,7 +26,6 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
 import ugh.dl.Prefs;
-import ugh.exceptions.PreferencesException;
 
 @PluginImplementation
 @Log4j2
@@ -77,9 +76,10 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
         StringBuilder sql = new StringBuilder();
         sql.append(
-                "select e.prozesseID, e.Wert as currentStatus, e.creationDate as date, m1.value as docstruct, p2.Wert as title from prozesseeigenschaften e ");
-        sql.append("left join metadata m1 on e.prozesseID = m1.processid ");
+                "select e.prozesseID, e.Wert as currentStatus, e.creationDate as date, m1.value as docstruct, p2.Wert as title ");
+        sql.append("from prozesseeigenschaften e left join metadata m1 on e.prozesseID = m1.processid ");
         sql.append("left join metadata m2 on e.prozesseID = m2.processid ");
+
         sql.append("left join prozesseeigenschaften p2 on e.prozesseID = p2.prozesseID ");
 
         sql.append("where e.titel = \"ProcessStatus\" and m1.name=\"docstruct\" ");
@@ -98,7 +98,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
             sql.append(searchTerm);
             sql.append("%\" ");
         }
-        
+
         sql.append("order by date desc limit 50 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
@@ -108,9 +108,9 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
             String processStatus = (String) objArr[1];
             String processDate = (String) objArr[2];
             String docstruct = (String) objArr[3];
-            String title = (String) objArr[4];
+            String entityTitle = (String) objArr[4];
             RowEntry entry = new RowEntry();
-            entry.setDisplayName(title);
+            entry.setDisplayName(entityTitle);
             entry.setLastModified(processDate);
             entry.setEntityType(docstruct);
             entry.setStatus(processStatus);
@@ -142,22 +142,22 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     }
 
     public String createNewEntity(EntityType type) {
-        
-//        Prefs prefs = new Prefs();
-//        try {
-//            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
-//        } catch (PreferencesException e1) {
-//            // TODO Auto-generated catch block
-//            e1.printStackTrace();
-//        }
+
+        //        Prefs prefs = new Prefs();
+        //        try {
+        //            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
+        //        } catch (PreferencesException e1) {
+        //            // TODO Auto-generated catch block
+        //            e1.printStackTrace();
+        //        }
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
         form.setPlugin("intranda_workflow_entity_editor");
         IWorkflowPlugin plugin = form.getWorkflowPlugin();
 
         try {
-        	// TODO this should come from the configuration file
-        	Prefs prefs = RulesetManager.getRulesetByName("Standard").getPreferences();
+            // TODO this should come from the configuration file
+            Prefs prefs = RulesetManager.getRulesetByName("Standard").getPreferences();
             Method setEntityType = plugin.getClass().getMethod("setEntityType", EntityType.class);
             setEntityType.invoke(plugin, type);
             Method setPrefs = plugin.getClass().getMethod("setPrefs", Prefs.class);
