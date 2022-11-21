@@ -22,6 +22,7 @@ import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.exceptions.DAOException;
 import de.sub.goobi.persistence.managers.ProcessManager;
 import de.sub.goobi.persistence.managers.RulesetManager;
+import io.goobi.workflow.locking.LockingBean;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
@@ -30,6 +31,8 @@ import ugh.dl.Prefs;
 @PluginImplementation
 @Log4j2
 public class EntityDashboardPlugin implements IDashboardPlugin {
+
+    private static final long serialVersionUID = -1947078064080952118L;
 
     @Getter
     private String title = "intranda_dashboard_entity";
@@ -47,7 +50,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     private PluginGuiType pluginGuiType = PluginGuiType.FULL;
 
     @Getter
-    private EntityConfig configuration;
+    private transient EntityConfig configuration;
 
     /**
      * Constructor
@@ -122,6 +125,11 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     }
 
     public String loadEntityEdition(RowEntry entry) {
+
+        if (!LockingBean.lockObject(entry.getProcessId(), Helper.getCurrentUser().getNachVorname())) {
+            Helper.setFehlerMeldung("plugin_workflow_entity_locked");
+            return guiPath;
+        }
         BreadcrumbItem bci = new BreadcrumbItem(entry.getEntityType(), entry.getDisplayName(), Integer.parseInt(entry.getProcessId()), "", "");
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
@@ -142,14 +150,6 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     }
 
     public String createNewEntity(EntityType type) {
-
-        //        Prefs prefs = new Prefs();
-        //        try {
-        //            prefs.loadPrefs("/opt/digiverso/goobi/rulesets/entity.xml");
-        //        } catch (PreferencesException e1) {
-        //            // TODO Auto-generated catch block
-        //            e1.printStackTrace();
-        //        }
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
         form.setPlugin("intranda_workflow_entity_editor");
