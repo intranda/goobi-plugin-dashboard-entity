@@ -27,8 +27,16 @@
 }
 
 .box .box-title {
-    overflow-y: auto;
     scrollbar-gutter: stable;
+}
+
+.box-title h3 {
+	overflow: hidden;
+	hyphens: auto;
+}
+
+.box-title__actions {
+	display: flex;
 }
 
 .header {
@@ -81,7 +89,7 @@
 .box .box-title {
 	display: flex;
   justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 	background-color: #fff;
   margin: 0;
   padding: 7px 10px;
