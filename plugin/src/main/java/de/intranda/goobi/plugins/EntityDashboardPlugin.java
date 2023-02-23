@@ -102,7 +102,8 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
             sql.append("%\" ");
         }
 
-        sql.append("order by date desc limit 50 ");
+        sql.append("order by date desc ");
+        //        sql.append("limit 50 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         for (Object obj : rows) {
