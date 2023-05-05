@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.intranda.goobi.plugins.dashboard</groupId>
   <artifactId>entity-main</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>23.04.1</version>
   <properties>
     <jar.name>plugin_intranda_dashboard_entity</jar.name>
     <dest.folder>/opt/digiverso/goobi/plugins/administration/</dest.folder>
@@ -10,28 +10,28 @@
   <parent>
     <groupId>de.intranda.goobi.plugins.dashboard</groupId>
     <artifactId>entity</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>23.04.1</version>
   </parent>
   <build>
     <finalName>${jar.name}</finalName>
-    <sourceDirectory>${project.basedir}/../src/main/java</sourceDirectory> 
+    <sourceDirectory>${project.basedir}/../src/main/java</sourceDirectory>
     <testSourceDirectory>${project.basedir}/../src/test/java</testSourceDirectory>
-     <resources>
-       <resource>
-         <directory>src/main/java</directory>
-         <excludes>
-            <exclude>**/org/goobi/beans/*</exclude>
-         </excludes>
-       </resource>
-       </resources>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <excludes>
+          <exclude>**/org/goobi/beans/*</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>
-                    <excludes>
-                        <exclude>**/org/goobi/beans/*</exclude>
-                    </excludes>
+          <excludes>
+            <exclude>**/org/goobi/beans/*</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
