@@ -3,7 +3,7 @@
   <parent>
     <groupId>io.goobi.workflow</groupId>
     <artifactId>workflow-base</artifactId>
-    <version>24.04.2</version>
+    <version>24.05-SNAPSHOT</version>
     <relativePath />
   </parent>
   <groupId>io.goobi.workflow.plugin</groupId>
@@ -25,12 +25,6 @@
       <artifactId>workflow-core</artifactId>
       <version>${project.version}</version>
       <classifier>classes</classifier>
-    </dependency>
-    <dependency>
-      <groupId>de.intranda.goobi.plugins.workflow</groupId>
-      <artifactId>entity_editor-gui</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
