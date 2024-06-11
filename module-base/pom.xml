@@ -10,8 +10,13 @@
   <dependencies>
     <dependency>
       <groupId>io.goobi.workflow.plugin</groupId>
-      <artifactId>plugin-workflow-entity-editor-lib</artifactId>
+      <artifactId>plugin-dashboard-entity-lib</artifactId>
       <version>${project.version}</version>
-    </dependency>
+    </dependency>    
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.3.9</version>
+        </dependency>
   </dependencies>
 </project>
