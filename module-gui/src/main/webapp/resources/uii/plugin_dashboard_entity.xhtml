@@ -45,7 +45,7 @@
 
                         <ui:repeat
                             var="type"
-                            value="#{DashboardForm.plugin.allEntityTypes}">
+                            value="#{entityDatabaseBean.allEntityTypes}">
 
                             <div class="col-md-6 col-lg-4">
 
@@ -127,7 +127,7 @@
 
 	                                            <ui:repeat
 	                                                var="entity"
-	                                                value="#{DashboardForm.plugin.getEntityData(type)}">
+	                                                value="#{entityDatabaseBean.getEntityData(type)}">
 	                                                <h:panelGroup
 	                                                    styleClass="relation-row"
 	                                                    id="entity">

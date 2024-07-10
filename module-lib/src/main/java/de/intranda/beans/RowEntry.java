@@ -1,4 +1,4 @@
-package de.intranda.goobi.plugins;
+package de.intranda.beans;
 
 import lombok.Data;
 
@@ -6,10 +6,8 @@ import lombok.Data;
 public class RowEntry {
 
     private String entityType;
-
     private String displayName;
     private String lastModified;
     private String status;
     private String processId;
-
 }
