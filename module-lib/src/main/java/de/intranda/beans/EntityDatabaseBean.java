@@ -1,21 +1,21 @@
 package de.intranda.beans;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-
+import de.intranda.goobi.plugins.model.EntityConfig;
+import de.intranda.goobi.plugins.model.EntityType;
+import de.sub.goobi.config.ConfigPlugins;
+import de.sub.goobi.helper.Helper;
+import de.sub.goobi.persistence.managers.ProcessManager;
+import lombok.Getter;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
 import org.apache.commons.lang.StringUtils;
 
-import de.intranda.goobi.plugins.model.EntityConfig;
-import de.intranda.goobi.plugins.model.EntityType;
-import de.sub.goobi.config.ConfigPlugins;
-import de.sub.goobi.persistence.managers.ProcessManager;
-import lombok.Getter;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -35,12 +35,16 @@ public class EntityDatabaseBean implements Serializable {
     }
 
     public List<EntityType> getAllEntityTypes() {
+        try {
+            if (configuration == null) {
+                loadConfiguration();
+            }
 
-        if (configuration == null) {
-            loadConfiguration();
+            return configuration.getAllTypes();
+        } catch (RuntimeException e) {
+            Helper.setFehlerMeldung(e.getMessage());
+            return Collections.emptyList();
         }
-
-        return configuration.getAllTypes();
     }
 
     public List<RowEntry> getEntityData(EntityType type) {
