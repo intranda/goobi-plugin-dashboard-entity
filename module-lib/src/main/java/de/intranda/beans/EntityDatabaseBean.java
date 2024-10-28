@@ -1,21 +1,23 @@
 package de.intranda.beans;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
+import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
+import org.apache.commons.lang.StringUtils;
+
 import de.intranda.goobi.plugins.model.EntityConfig;
 import de.intranda.goobi.plugins.model.EntityType;
 import de.sub.goobi.config.ConfigPlugins;
 import de.sub.goobi.helper.Helper;
 import de.sub.goobi.persistence.managers.ProcessManager;
 import lombok.Getter;
-import org.apache.commons.configuration.XMLConfiguration;
-import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
-import org.apache.commons.lang.StringUtils;
-
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @Named
 @SessionScoped
@@ -76,7 +78,7 @@ public class EntityDatabaseBean implements Serializable {
         }
 
         sql.append("order by date desc ");
-        //        sql.append("limit 50 ");
+        sql.append("limit 25 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         for (Object obj : rows) {
