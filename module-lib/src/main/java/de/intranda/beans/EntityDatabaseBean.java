@@ -33,7 +33,7 @@ public class EntityDatabaseBean implements Serializable {
     private void loadConfiguration() {
         XMLConfiguration config = ConfigPlugins.getPluginConfig("intranda_workflow_entity_editor");
         config.setExpressionEngine(new XPathExpressionEngine());
-        configuration = new EntityConfig(config);
+        configuration = new EntityConfig(config, false);
     }
 
     public List<EntityType> getAllEntityTypes() {
