@@ -27,9 +27,6 @@ public class EntityDatabaseBean implements Serializable {
     @Getter
     private transient EntityConfig configuration;
 
-    public EntityDatabaseBean() {
-    }
-
     private void loadConfiguration() {
         XMLConfiguration config = ConfigPlugins.getPluginConfig("intranda_workflow_entity_editor");
         config.setExpressionEngine(new XPathExpressionEngine());
@@ -41,7 +38,6 @@ public class EntityDatabaseBean implements Serializable {
             if (configuration == null) {
                 loadConfiguration();
             }
-
             return configuration.getAllTypes();
         } catch (RuntimeException e) {
             Helper.setFehlerMeldung(e.getMessage());
@@ -50,6 +46,7 @@ public class EntityDatabaseBean implements Serializable {
     }
 
     public List<RowEntry> getEntityData(EntityType type) {
+
         List<RowEntry> answer = new ArrayList<>();
 
         StringBuilder sql = new StringBuilder();
@@ -80,7 +77,7 @@ public class EntityDatabaseBean implements Serializable {
         }
 
         sql.append("order by date desc ");
-        sql.append("limit 500 ");
+        sql.append("limit 100 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         for (Object obj : rows) {
