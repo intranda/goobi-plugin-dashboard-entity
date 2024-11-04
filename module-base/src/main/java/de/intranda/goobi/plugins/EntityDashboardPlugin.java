@@ -39,15 +39,6 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     @Getter
     private PluginGuiType pluginGuiType = PluginGuiType.FULL;
 
-    ;
-
-    /**
-     * Constructor
-     */
-    public EntityDashboardPlugin() {
-
-    }
-
     public String loadEntityEdition(RowEntry entry) {
 
         if (!LockingBean.lockObject(entry.getProcessId(), Helper.getCurrentUser().getNachVorname())) {
@@ -58,8 +49,12 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
 
-        form.setPlugin("intranda_workflow_entity_editor");
         IWorkflowPlugin plugin = form.getWorkflowPlugin();
+        if (plugin == null) {
+            form.setPlugin("intranda_workflow_entity_editor");
+            plugin = form.getWorkflowPlugin();
+
+        }
 
         try {
             Method selection = plugin.getClass().getMethod("setSelectedBreadcrumb", BreadcrumbItem.class);
