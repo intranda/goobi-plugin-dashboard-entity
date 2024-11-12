@@ -77,7 +77,7 @@ public class EntityDatabaseBean implements Serializable {
         }
 
         sql.append("order by date desc ");
-        sql.append("limit 100 ");
+        sql.append("limit 500 ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         for (Object obj : rows) {
