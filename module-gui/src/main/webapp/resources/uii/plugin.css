@@ -10,6 +10,7 @@
 
 .navbar {
   --clr-primary-400: var(--bg-nav-bar);
+  --clr-primary-600: var(--bg-hv-nav-bar);
 }
 
 .navbar .nav-link:hover {
