@@ -17,7 +17,7 @@
   border-color: var(--bg-hv-nav-bar);
 }
 
-.notification-area .btn.btn-primary {
+.notification-area {
   --clr-primary: var(--bg-nav-bar);
 }
 
