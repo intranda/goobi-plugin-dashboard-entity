@@ -17,6 +17,14 @@
   border-color: var(--bg-hv-nav-bar);
 }
 
+.notification-area .btn.btn-primary {
+  background-color: var(--bg-nav-bar);
+}
+
+.notification-area .btn.btn-primary:hover {
+  background-color: var(--bg-hv-nav-bar);
+}
+
 .row {
   row-gap: 8px;
 }
