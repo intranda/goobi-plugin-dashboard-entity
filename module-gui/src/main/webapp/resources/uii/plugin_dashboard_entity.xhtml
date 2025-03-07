@@ -11,19 +11,13 @@
     template="template.html">
 
     <composite:interface>
-
-
-
     </composite:interface>
     <ui:define name="navigation">
-        <h:form>
-            <a
-                aria-label="intranda Logo"
-                href="index.xhtml"
-                id="brand">&#160; </a>
-
+        <h:form styleClass="d-flex justify-content-between w-100">
+			<div class="navbar navbar-collapse collapse" id="navbarSupportedContent">
+	            <ui:include src="/uii/template/inc_menu_main.xhtml" />
+			</div>
             <ui:include src="/uii/template/inc_menu_preferences.xhtml" />
-            <ui:include src="/uii/template/inc_menu_main.xhtml" />
         </h:form>
     </ui:define>
 
@@ -33,10 +27,12 @@
         <h:panelGroup id="entity" styleClass="dashboard-entity">
 
             <div>
-                <div class="head">
-                    <h1>
-                        <h:outputText value="#{msgs[DashboardForm.plugin.title]}" />
-                    </h1>
+                <div class="header">
+					<div class="header__bottom">
+						<h1>
+							<h:outputText value="#{msgs[DashboardForm.plugin.title]}" />
+						</h1>
+					</div>
 
                 </div>
 
@@ -46,124 +42,128 @@
                             var="type"
                             value="#{entityDatabaseBean.allEntityTypes}">
 
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-lg-6 col-xl-4">
 
                     			<h:form>
 
 	                                <div
-	                                    class="box  box-bordered"
-	                                    style="color: #{type.color}">
-	                                    <div
-	                                        class="box-title"
-	                                        jsf:style="border-color: #{type.color};  ">
-	                                        <h3>
-	                                            <i
-	                                                class="fa #{type.icon} big-icon"
-	                                                style="color: #{type.color};" />
-	                                            <h:outputText
-	                                                value="#{msgs[type.name]}"
-	                                                style="color: #{type.color};" />
-	                                        </h3>
+	                                    class="box box--outline"
+	                                    style="--box-color: #{type.color}">
+										<div class="box__content">
+											<div
+												class="box__title"
+												jsf:style="border-color: #{type.color};  ">
+												<h3 class="h6 m-0">
+													<span
+														class="fa #{type.icon} me-3"
+														style="color: #{type.color};"
+														aria-hidden="true" />
+													<h:outputText
+														value="#{msgs[type.name]}"
+														style="color: #{type.color};" />
+												</h3>
 
-																					<div class="box-title__actions">
+																						<div class="box-title__actions justify-content-end">
 
-	                                        <h:inputText
-	                                            value="#{type.searchValue}"
-	                                            id="searchField"
-	                                            styleClass="searchField" />
+												<h:inputText
+													value="#{type.searchValue}"
+													id="searchField"
+													styleClass="searchField" />
 
-	                                        <button
-	                                            class="btn nobackground"
-	                                            jsf:id="searchEntities"
-	                                            style="color:  #{type.color}; margin-right: 5px;"
-	                                            jsf:onclick="$('#entitySearchBox').modal('show');"
-																							title="#{msgs.intranda_dashboard_entity_search}"
-																							data-toggle="tooltip"
-																							data-placement="top"
-																							>
-	                                            <i class="fa fa-search big-icon" />
-	                                            <f:ajax
-	                                                execute="searchField"
-	                                                render=":entity" />
-	                                        </button>
+												<button
+													class="btn nobackground"
+													jsf:id="searchEntities"
+													style="color:  #{type.color}; margin-right: 5px;"
+													jsf:onclick="$('#entitySearchBox').modal('show');"
+																								title="#{msgs.intranda_dashboard_entity_search}"
+																								data-toggle="tooltip"
+																								data-placement="top"
+																								>
+													<i class="fa fa-search big-icon" />
+													<f:ajax
+														execute="searchField"
+														render=":entity" />
+												</button>
 
-																						<button
-	                                            class="btn nobackground"
-	                                            jsf:id="addEntity"
-	                                            style="color:  #{type.color};"
-	                                            jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
-																							title="#{msgs.intranda_dashboard_entity_addEntity}"
-																							data-toggle="tooltip"
-																							data-placement="top"
-																							>
-	                                            <i class="fa fa-plus big-icon" />
-	                                        </button>
-																					</div>
+																							<button
+													class="btn nobackground"
+													jsf:id="addEntity"
+													style="color:  #{type.color};"
+													jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
+																								title="#{msgs.intranda_dashboard_entity_addEntity}"
+																								data-toggle="tooltip"
+																								data-placement="top"
+																								>
+													<i class="fa fa-plus big-icon" />
+												</button>
+																						</div>
 
-	                                    </div>
-	                                    <h:panelGroup
-	                                        layout="block"
-	                                        styleClass="box-content nopadding #{type.name}"
-	                                        style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
-	                                        id="sources"
-																					>
-																					<f:passThroughAttribute name="role" value="table" />
-																					<f:passThroughAttribute name="aria-label" value="#{type.name}" />
+											</div>
+											<h:panelGroup
+												layout="block"
+												styleClass="box__body #{type.name}"
+												style="border-color: #{type.color}; #{type.showLinkedContent ? '' : 'display:none'}"
+												id="sources"
+												>
+												<f:passThroughAttribute name="role" value="table" />
+												<f:passThroughAttribute name="aria-label" value="#{type.name}" />
 
-	                                        <h:panelGroup
-	                                            styleClass="relation-row header"
-	                                            rendered="#{type.showLinkedContent}">
-																							<f:passThroughAttribute name="role" value="row" />
-	                                            <div role="columnheader" style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
-	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
-	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceStatus}</div>
-	                                            <div role="columnheader">#{msgs.plugin_workflow_entity_sourceAction}</div>
-	                                        </h:panelGroup>
-	                                        <h:panelGroup
-	                                            layout="block"
-	                                            styleClass="sources"
-	                                            rendered="#{type.showLinkedContent}">
+												<h:panelGroup
+													styleClass="relation-row header"
+													rendered="#{type.showLinkedContent}"
+													layout="block">
+													<f:passThroughAttribute name="role" value="row" />
+													<div role="columnheader" style="margin-left: 10px;">#{msgs.plugin_workflow_entity_sourceName}</div>
+													<div role="columnheader">#{msgs.plugin_workflow_entity_sourceChangeDate}</div>
+													<div role="columnheader">#{msgs.plugin_workflow_entity_sourceStatus}</div>
+													<div role="columnheader">#{msgs.plugin_workflow_entity_sourceAction}</div>
+												</h:panelGroup>
+												<h:panelGroup
+													layout="block"
+													styleClass="sources"
+													rendered="#{type.showLinkedContent}">
 
-	                                            <ui:repeat
-	                                                var="entity"
-	                                                value="#{entityDatabaseBean.getEntityData(type)}">
-	                                                <h:panelGroup
-	                                                    styleClass="relation-row"
-	                                                    id="entity">
-																											<f:passThroughAttribute name="role" value="row" />
-	                                                    <div role="cell" style="margin-left: 10px;">
-	                                                        <h:outputText
-	                                                            value="#{entity.displayName}"
-	                                                            style="color: #333" />
-	                                                    </div>
-	                                                    <div role="cell">
-	                                                        <h:outputText
-	                                                            value="#{entity.lastModified}"
-	                                                            style="color: #333" />
-	                                                    </div>
-	                                                    <div role="cell">
-	                                                        <h:outputText
-	                                                            value="#{msgs[entity.status]}"
-	                                                            styleClass="badge-bordered"
-	                                                            style="color: #333" />
-	                                                    </div>
-	                                                    <div role="cell" class="cell--action">
-	                                                        <button
-	                                                            class="btn btn-mini"
-	                                                            jsf:id="editentity"
-	                                                            style="background-color: #{type.color}; color: #fff;"
-	                                                            jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
-																															title="#{msgs.intranda_dashboard_entity_editEntity}"
-																															data-toggle="tooltip"
-																															data-placement="top"
-																															>
-	                                                            <i class="fa fa-pencil" />
-	                                                        </button>
-	                                                    </div>
-	                                                </h:panelGroup>
-	                                            </ui:repeat>
-	                                        </h:panelGroup>
-	                                    </h:panelGroup>
+													<ui:repeat
+														var="entity"
+														value="#{entityDatabaseBean.getEntityData(type)}">
+														<h:panelGroup
+															styleClass="relation-row"
+															id="entity">
+															<f:passThroughAttribute name="role" value="row" />
+															<div role="cell" style="margin-left: 10px;">
+																<h:outputText
+																	value="#{entity.displayName}"
+																	style="color: #333" />
+															</div>
+															<div role="cell">
+																<h:outputText
+																	value="#{entity.lastModified}"
+																	style="color: #333" />
+															</div>
+															<div role="cell">
+																<h:outputText
+																	value="#{msgs[entity.status]}"
+																	styleClass="badge-bordered"
+																	style="color: #333" />
+															</div>
+															<div role="cell" class="cell--action">
+																<button
+																	class="btn btn-mini"
+																	jsf:id="editentity"
+																	style="background-color: #{type.color}; color: #fff;"
+																	jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
+																																title="#{msgs.intranda_dashboard_entity_editEntity}"
+																																data-toggle="tooltip"
+																																data-placement="top"
+																																>
+																	<i class="fa fa-pencil" />
+																</button>
+															</div>
+														</h:panelGroup>
+													</ui:repeat>
+												</h:panelGroup>
+											</h:panelGroup>
+										</div>
 	                                </div>
 							</h:form>
 						</div>

@@ -8,6 +8,24 @@
   --gap: 8px;
 }
 
+.navbar {
+  --clr-primary-400: var(--bg-nav-bar);
+}
+
+.navbar .nav-link:hover {
+  background-color: var(--bg-hv-nav-bar);
+  border-color: var(--bg-hv-nav-bar);
+}
+
+.row {
+  row-gap: 8px;
+}
+
+.col,
+.col-md-6,
+.col-lg-4 {
+  padding-inline: 15px !important;
+}
 
 .grid {
     display: grid;
@@ -74,42 +92,52 @@
 }
 
 .nobackground {
-    background: #fff;
+    background: #fff !important;
     padding: 0px 2px;
 }
 
 .big-icon {
     font-size: 20px !important;
+    margin-inline-end: 0.5rem;
+}
+
+.box.box--outline {
+  color: var(--box-color);
+  border-color: var(--box-color);
 }
 
 .box.box-bordered {
   margin-bottom: var(--gap);
 }
 
-.box .box-title {
+.box .box__title {
 	display: flex;
   justify-content: space-between;
 	align-items: baseline;
-	background-color: #fff;
+	background-color: #fff !important;
   margin: 0;
   padding: 7px 10px;
 }
 
-.box .box-title::after {
+.box .box__title::after {
     display: none;
 }
 
-.box .box-title h3 {
+.box .box__title h3 {
     display: flex;
     align-items: baseline;
     gap: 4px;
     margin: 0;
 }
 
-.box .box-title h3 i {
+.box .box__title h3 span {
     margin: 0;
     min-width: 24px;
     max-width: 24px;
+}
+
+.box .box__body {
+  background: white;
 }
 
 .searchField {
@@ -117,12 +145,11 @@
     height: 25px;
     font-size: 13px;
     padding: 2px 12px;
-    background: #fff;
+    background: #fff !important;
     color: #333;
     line-height: 1.42857143;
     display: inline-block;
     margin-right: 10px;
-    margin-left: auto;
 }
 
 /* content background color */
@@ -133,6 +160,15 @@ body,
 .breadcrumb-container .breadcrumb-label
 {
   background-color: var(--bg-content) !important;
+}
+
+.btn.btn-mini {
+  line-height: 1.5;
+  padding: 1px 3px;
+}
+
+.btn-mini .fa {
+  font-size: 14px;
 }
 
 /* Override styles.css */
