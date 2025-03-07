@@ -18,7 +18,7 @@
 }
 
 .notification-area .btn.btn-primary {
-  background-color: var(--bg-nav-bar);
+  --clr-primary: var(--bg-nav-bar);
 }
 
 .notification-area .btn.btn-primary:hover {
