@@ -55,7 +55,7 @@
 												jsf:style="border-color: #{type.color};  ">
 												<h3 class="h6 m-0">
 													<span
-														class="fa #{type.icon} me-3"
+														class="fa #{type.icon}"
 														style="color: #{type.color};"
 														aria-hidden="true" />
 													<h:outputText
@@ -63,7 +63,7 @@
 														style="color: #{type.color};" />
 												</h3>
 
-																						<div class="box-title__actions justify-content-end">
+											<div class="box-title__actions justify-content-end">
 
 												<h:inputText
 													value="#{type.searchValue}"
@@ -79,7 +79,7 @@
 																								data-toggle="tooltip"
 																								data-placement="top"
 																								>
-													<i class="fa fa-search big-icon" />
+													<span class="fa fa-search big-icon" />
 													<f:ajax
 														execute="searchField"
 														render=":entity" />
@@ -94,7 +94,7 @@
 																								data-toggle="tooltip"
 																								data-placement="top"
 																								>
-													<i class="fa fa-plus big-icon" />
+													<span class="fa fa-plus big-icon" />
 												</button>
 																						</div>
 
@@ -156,7 +156,7 @@
 																																data-toggle="tooltip"
 																																data-placement="top"
 																																>
-																	<i class="fa fa-pencil" />
+																	<span class="fa fa-pencil" />
 																</button>
 															</div>
 														</h:panelGroup>
