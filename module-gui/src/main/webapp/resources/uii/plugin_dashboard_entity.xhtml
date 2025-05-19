@@ -13,12 +13,9 @@
     <composite:interface>
     </composite:interface>
     <ui:define name="navigation">
-        <h:form styleClass="d-flex justify-content-between w-100">
-			<div class="navbar navbar-collapse collapse" id="navbarSupportedContent">
-	            <ui:include src="/uii/template/inc_menu_main.xhtml" />
-			</div>
-            <ui:include src="/uii/template/inc_menu_preferences.xhtml" />
-        </h:form>
+		<h:form id="menu" styleClass="d-flex justify-content-between w-100">
+			<ui:include src="/WEB-INF/includes/template/inc_menu.xhtml" />
+		</h:form>
     </ui:define>
 
     <ui:define name="content">
