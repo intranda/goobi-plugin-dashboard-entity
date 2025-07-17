@@ -49,7 +49,7 @@ public class EntityDatabaseBean implements Serializable {
         List<RowEntry> answer = new ArrayList<>();
 
         StringBuilder sql = new StringBuilder();
-        sql.append("select e.object_id, e.Wert as currentStatus, e.creation_date as date, m1.value as docstruct, p2.Wert as title ");
+        sql.append("select e.object_id, e.property_value as currentStatus, e.creation_date as date, m1.value as docstruct, p2.Wert as title ");
         sql.append("from properties e left join metadata m1 on e.object_id = m1.processid AND e.creation_date IS NOT NULL AND ");
         sql.append("e.property_name = 'ProcessStatus' LEFT JOIN properties p2 ON e.object_id = p2.object_id AND p2.property_name = 'DisplayName' ");
 
