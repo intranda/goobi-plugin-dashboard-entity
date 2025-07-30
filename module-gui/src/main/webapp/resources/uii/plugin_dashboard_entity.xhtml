@@ -56,7 +56,7 @@
 														style="color: #{type.color};"
 														aria-hidden="true" />
 													<h:outputText
-														value="#{msgs[type.name]}"
+														value="#{msgs[type.name]} (#{entityDatabaseBean.getNumberOfEntities(type)})"
 														style="color: #{type.color};" />
 												</h3>
 

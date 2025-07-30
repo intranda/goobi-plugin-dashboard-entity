@@ -78,7 +78,11 @@ public class EntityDatabaseBean implements Serializable {
             sql.append("%\" ");
         }
 
-        sql.append("ORDER BY e.creation_date DESC; ");
+        sql.append("ORDER BY e.creation_date DESC");
+        if (configuration.getMaxNumberOfItems() > 0) {
+            sql.append("LIMIT ");
+            sql.append(configuration.getMaxNumberOfItems());
+        }
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         for (Object obj : rows) {
@@ -102,6 +106,41 @@ public class EntityDatabaseBean implements Serializable {
         //        CREATE INDEX idx_properties_objectid_propertyname_date ON properties(object_id, property_name, creation_date);
 
         return answer;
+    }
+
+    public String getNumberOfEntities(EntityType type) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ");
+        sql.append("count(1) ");
+        sql.append("FROM metadata m1 ");
+        sql.append("JOIN properties e ON e.object_id = m1.processid ");
+        sql.append("JOIN properties p2 ON p2.object_id = m1.processid ");
+        if (StringUtils.isNotBlank(type.getSearchValue())) {
+            sql.append("left join metadata m2 on e.object_id = m2.processid ");
+        }
+        sql.append("WHERE m1.name = 'docstruct' ");
+        sql.append("AND m1.value = '").append(type.getName()).append("' ");
+        sql.append("AND e.property_name = 'ProcessStatus' ");
+        sql.append("AND e.creation_date IS NOT NULL ");
+        sql.append("AND p2.property_name = 'DisplayName' ");
+        if (StringUtils.isNotBlank(type.getSearchValue())) {
+            sql.append("and m2.name = \"index.EntitySearch\" ");
+            sql.append("and m2.value like \"%");
+            String searchTerm = type.getSearchValue();
+            searchTerm = searchTerm.replace(" ", "%");
+            searchTerm = searchTerm.replace("`", "_");
+            searchTerm = searchTerm.replace("’", "_");
+            searchTerm = searchTerm.replace("\'", "_");
+            sql.append(searchTerm);
+            sql.append("%\" ");
+        }
+        sql.append("ORDER BY e.creation_date DESC; ");
+
+        List<?> rows = ProcessManager.runSQL(sql.toString());
+        Object obj = rows.get(0);
+        Object[] objArr = (Object[]) obj;
+        String number = (String) objArr[0];
+        return number;
     }
 
 }
