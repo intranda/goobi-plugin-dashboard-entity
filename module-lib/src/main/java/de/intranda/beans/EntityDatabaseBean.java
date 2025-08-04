@@ -78,7 +78,7 @@ public class EntityDatabaseBean implements Serializable {
             sql.append("%\" ");
         }
 
-        sql.append("ORDER BY e.creation_date DESC");
+        sql.append("ORDER BY e.creation_date DESC ");
         if (configuration.getMaxNumberOfItems() > 0) {
             sql.append("LIMIT ");
             sql.append(configuration.getMaxNumberOfItems());
@@ -134,7 +134,7 @@ public class EntityDatabaseBean implements Serializable {
             sql.append(searchTerm);
             sql.append("%\" ");
         }
-        sql.append("ORDER BY e.creation_date DESC; ");
+        sql.append("ORDER BY e.creation_date DESC ");
 
         List<?> rows = ProcessManager.runSQL(sql.toString());
         Object obj = rows.get(0);
