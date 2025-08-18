@@ -39,7 +39,7 @@ public class EntityDatabaseBean implements Serializable {
             }
             return configuration.getAllTypes();
         } catch (RuntimeException e) {
-            Helper.setFehlerMeldung(e.getMessage());
+            Helper.setFehlerMeldung(e);
             return Collections.emptyList();
         }
     }
