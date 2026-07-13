@@ -8,6 +8,7 @@
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui"
     xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:util="http://goobi.io/util"
     template="template.html">
 
     <composite:interface>
@@ -72,11 +73,11 @@
 													jsf:id="searchEntities"
 													style="color:  #{type.color}; margin-right: 5px;"
 													jsf:onclick="$('#entitySearchBox').modal('show');"
-																								title="#{msgs.intranda_dashboard_entity_search}"
-																								data-toggle="tooltip"
-																								data-placement="top"
-																								>
-													<span class="fa fa-search big-icon" />
+													title="#{msgs.intranda_dashboard_entity_search}"
+													data-toggle="tooltip"
+													data-placement="top"
+													>
+													<util:icon icon="search"/>
 													<f:ajax
 														execute="searchField"
 														render=":entity" />
@@ -87,11 +88,11 @@
 													jsf:id="addEntity"
 													style="color:  #{type.color};"
 													jsf:action="#{DashboardForm.plugin.createNewEntity(type)}"
-																								title="#{msgs.intranda_dashboard_entity_addEntity}"
-																								data-toggle="tooltip"
-																								data-placement="top"
-																								>
-													<span class="fa fa-plus big-icon" />
+													title="#{msgs.intranda_dashboard_entity_addEntity}"
+													data-toggle="tooltip"
+													data-placement="top"
+													>
+													<util:icon icon="plus"/>
 												</button>
 																						</div>
 
@@ -149,11 +150,11 @@
 																	jsf:id="editentity"
 																	style="background-color: #{type.color}; color: #fff;"
 																	jsf:action="#{DashboardForm.plugin.loadEntityEdition(entity)}"
-																																title="#{msgs.intranda_dashboard_entity_editEntity}"
-																																data-toggle="tooltip"
-																																data-placement="top"
-																																>
-																	<span class="fa fa-pencil" />
+																	title="#{msgs.intranda_dashboard_entity_editEntity}"
+																	data-toggle="tooltip"
+																	data-placement="top"
+																	>
+																	<util:icon icon="pencil"/>
 																</button>
 															</div>
 														</h:panelGroup>
