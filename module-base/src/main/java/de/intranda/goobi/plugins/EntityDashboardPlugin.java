@@ -97,7 +97,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
      */
     IWorkflowPlugin getEntityEditorPlugin(NavigationForm form) {
         IWorkflowPlugin plugin = form.getWorkflowPlugin();
-        if (plugin == null) {
+        if (plugin == null || !ENTITY_EDITOR_PLUGIN_NAME.equals(plugin.getTitle())) {
             form.setPlugin(ENTITY_EDITOR_PLUGIN_NAME);
             plugin = form.getWorkflowPlugin();
         }
