@@ -27,6 +27,8 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
     private static final long serialVersionUID = -1947078064080952118L;
 
+    private static final String ENTITY_EDITOR_PLUGIN_NAME = "intranda_workflow_entity_editor";
+
     @Getter
     private String title = "intranda_dashboard_entity";
 
@@ -49,12 +51,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
 
-        IWorkflowPlugin plugin = form.getWorkflowPlugin();
-        if (plugin == null) {
-            form.setPlugin("intranda_workflow_entity_editor");
-            plugin = form.getWorkflowPlugin();
-
-        }
+        IWorkflowPlugin plugin = getEntityEditorPlugin(form);
 
         try {
             Method selection = plugin.getClass().getMethod("setSelectedBreadcrumb", BreadcrumbItem.class);
@@ -71,7 +68,7 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
     public String createNewEntity(EntityType type) {
 
         NavigationForm form = Helper.getBeanByClass(NavigationForm.class);
-        form.setPlugin("intranda_workflow_entity_editor");
+        form.setPlugin(ENTITY_EDITOR_PLUGIN_NAME);
         IWorkflowPlugin plugin = form.getWorkflowPlugin();
 
         try {
@@ -90,6 +87,21 @@ public class EntityDashboardPlugin implements IDashboardPlugin {
         }
 
         return plugin.getGui();
+    }
+
+    /**
+     * Get the entity editor workflow plugin from the navigation form, loading it if it is not the plugin that is currently opened.
+     *
+     * @param form the window scoped {@link NavigationForm} holding the currently opened workflow plugin
+     * @return the entity editor workflow plugin
+     */
+    IWorkflowPlugin getEntityEditorPlugin(NavigationForm form) {
+        IWorkflowPlugin plugin = form.getWorkflowPlugin();
+        if (plugin == null) {
+            form.setPlugin(ENTITY_EDITOR_PLUGIN_NAME);
+            plugin = form.getWorkflowPlugin();
+        }
+        return plugin;
     }
 
 }
