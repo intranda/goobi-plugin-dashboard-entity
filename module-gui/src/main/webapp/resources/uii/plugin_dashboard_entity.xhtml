@@ -52,10 +52,8 @@
 												class="box__title"
 												jsf:style="border-color: #{type.color};  ">
 												<h3 class="h6 m-0">
-													<span
-														class="fa #{type.icon}"
-														style="color: #{type.color};"
-														aria-hidden="true" />
+													<util:icon icon="#{type.icon}"
+														style="color: #{type.color};" />
 													<h:outputText
 														value="#{msgs[type.name]} (#{entityDatabaseBean.getNumberOfEntities(type)})"
 														style="color: #{type.color};" />
